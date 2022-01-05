@@ -73,7 +73,9 @@ public class Server_Multithreaded {
      * @param k length of targeted strings
      */
     static void getKLength(int k) throws IOException {
-        File file =new File("C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/10k-most-common_filered.txt");
+        File file =new File("D:/SINF2M/LINFO-2241/Project_Part1/10k-most-common_filered.txt");
+
+       // File file =new File("C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/10k-most-common_filered.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -107,8 +109,11 @@ public class Server_Multithreaded {
     public static void process_file(Socket socket) throws IOException, NoSuchAlgorithmException,
             InvalidKeySpecException, NoSuchPaddingException,
             IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
-        File decryptedFile = new File("test_file-decrypted-server.pdf");
-        File networkFile = new File("temp-server.pdf");
+        long current_time_t = System.currentTimeMillis();
+        String decryptedFile_name="test_file-decrypted-server-"+current_time_t+".pdf";
+        File decryptedFile = new File(decryptedFile_name);
+        String tempFile_name="temp-server"+current_time_t+".pdf";
+        File networkFile = new File(tempFile_name);
 
         // ServerSocket ss = new ServerSocket(3333);
         System.out.println("Waiting connection");
@@ -160,6 +165,8 @@ public class Server_Multithreaded {
         inDecrypted.close();
         outFile.close();
         socket.close();
+        decryptedFile.delete();
+        networkFile.delete();
 
     }
 

@@ -43,15 +43,17 @@ public class Main {
     }
 
     public static String randomPWD() throws IOException {
-        String path="C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/10k-most-common_filered.txt";
+
+        //String path="C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/10k-most-common_filered.txt";
+        String path="D:/SINF2M/LINFO-2241/Project_Part1/10k-most-common_filered.txt";
+
         //Get number of lines in the file
-<<<<<<< Updated upstream
-        long lines = Files.lines(Paths.get(path)).count();  //Path.of
-=======
+//<<<<<<< Updated upstream
+       // long lines = Files.lines(Paths.get(path)).count();  //Path.of
+//=======
         long lines = Files.lines(Path.of(path)).count();
 
-        System.out.println("number of lines in password file= "+lines);
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
         //Generate random number of a line in the file
         int randomNum = ThreadLocalRandom.current().nextInt(0, (int) lines+1);
         //Get password at that random line
@@ -62,11 +64,17 @@ public class Main {
     }
     public static String randomFilePath(){
         String[] paths=new String[5];
-        paths[0]="C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/Files/Files-5MB";
+       /** paths[0]="C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/Files/Files-5MB";
         paths[1]="C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/Files/Files-20KB";
         paths[2]="C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/Files/Files-50KB";
         paths[3]="C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/Files-50MB";
         paths[4]="C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/Files/Files-100KB";
+       **/
+        paths[0]="D:/SINF2M/LINFO-2241/Project_Part1/Files-5MB/PineTools.com_files";
+        paths[1]="D:/SINF2M/LINFO-2241/Project_Part1/Files-20KB/PineTools.com_files";
+        paths[2]="D:/SINF2M/LINFO-2241/Project_Part1/Files-50KB/PineTools.com_files";
+        paths[3]="D:/SINF2M/LINFO-2241/Project_Part1/Files-50MB/PineTools.com_files";
+        paths[4]="D:/SINF2M/LINFO-2241/Project_Part1/Files-100KB/PineTools.com_files";
         int[] lengths= new int[5];
         lengths[0]=5; lengths[1]=5; lengths[2]=5; lengths[3]=2; lengths[4]=5;
         int randomDir = ThreadLocalRandom.current().nextInt(0, (int) 4);
@@ -76,13 +84,13 @@ public class Main {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        for(int i=0;i<5;i++) {
+        //for(int i=0;i<5;i++) {
             int t = ThreadLocalRandom.current().nextInt(0, (int) 10000);
             Thread.sleep(t);
 
-            System.out.println("request number: "+i);
+            //System.out.println("request number: "+i);
             client_behavior();
-        }
+       // }
     }
     public static void client_behavior() {
         try{
@@ -109,8 +117,8 @@ public class Main {
 
 
             // Creating socket to connect to server (in this example it runs on the localhost on port 3333)
-            //Socket socket = new Socket("localhost", 3333);
-            Socket socket = new Socket("192.168.0.104", 3333);
+            Socket socket = new Socket("localhost", 3333);
+            //Socket socket = new Socket("192.168.0.104", 3333);
             // For any I/O operations, a stream is needed where the data are read from or written to. Depending on
             // where the data must be sent to or received from, different kind of stream are used.
             OutputStream outSocket = socket.getOutputStream();

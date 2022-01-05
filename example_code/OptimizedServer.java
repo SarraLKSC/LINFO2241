@@ -192,7 +192,7 @@ public class OptimizedServer {
     }
 
     public static void main(String[] args){
-        int number_of_threads = 1;
+        int number_of_threads =5;
 
         int port = 3333;
 
