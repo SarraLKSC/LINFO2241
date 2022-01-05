@@ -9,6 +9,8 @@ import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Executors;
@@ -39,6 +41,10 @@ public class Server_Multithreaded {
         return new Request(hashPwd, pwdLength, fileLength);
     }
 
+    /**
+     * This function generates of strings of length k in a recursive way, the strings are stored in the allStrings structure
+     * @param k size of the string we want to generate
+     */
     static void allKLengthStrings( int k)
     {
         char[] set = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
@@ -46,6 +52,13 @@ public class Server_Multithreaded {
         allKLengthRec(set, "", n, k);
     }
 
+    /**
+     * This function is the recursive body of previous function
+     * @param set the alphabet from which we generate the string
+     * @param prefix  result of previous recurcive call
+     * @param n length of the alphabet
+     * @param k number of remaining characters to fill in the string
+     */
     static void allKLengthRec(char[] set,String prefix,int n, int k)
     {   // Base case: k is 0, print prefix
         if (k == 0)    { allStrings.add(prefix);   return;  }
@@ -55,6 +68,10 @@ public class Server_Multithreaded {
                     n, k - 1);
         }
     }
+    /**
+     * this function extracts all strings from 10k-most-common file with a length of k
+     * @param k length of targeted strings
+     */
     static void getKLength(int k) throws IOException {
         File file =new File("D:/SINF2M/LINFO-2241/Project_Part1/10k-most-common_filered.txt");
 
@@ -64,6 +81,12 @@ public class Server_Multithreaded {
             if (line.length()==k){ allStrings.add(line);}
         }
     }
+    /**
+     * This function brute forces the SHA-1 hash using a look-up attack to extract the password
+     * @param hashPwd SHA-1 hash of the password
+     * @param pwdlength length of original password before hash
+     * @return cracked password
+     */
     public static String bruteForce(byte [] hashPwd,int pwdlength) throws NoSuchAlgorithmException, IOException {
         if(pwdlength<6){
             allKLengthStrings(pwdlength);
@@ -131,13 +154,6 @@ public class Server_Multithreaded {
         outSocket.writeLong(decryptedFile.length());
         outSocket.flush();
         FileManagement.sendFile(inDecrypted, outSocket);
-        /*
-        int readCount;
-        byte[] buffer = new byte[64];
-        //read from the file and send it in the socket
-        while ((readCount = inDecrypted.read(buffer)) > 0){
-            outSocket.write(buffer, 0, readCount);
-        }*/
 
         dataInputStream.close();
         inputStream.close();
@@ -160,7 +176,7 @@ public class Server_Multithreaded {
             serverSocket.setReuseAddress(true);
             Socket un_client;
             System.out.println("Waiting connection");
-            int id = 0;
+            int i = 0;
             while ((un_client = serverSocket.accept()) != null ){
                 Socket actuel_client = un_client;
 
@@ -171,7 +187,7 @@ public class Server_Multithreaded {
                         e.printStackTrace();
                     }
                 });
-                id++;
+
             }
         }catch (IOException e){
             e.printStackTrace();

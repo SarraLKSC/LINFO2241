@@ -45,14 +45,11 @@ public class Main {
     public static String randomPWD() throws IOException {
         String path="D:/SINF2M/LINFO-2241/Project_Part1/10k-most-common_filered.txt";
         //Get number of lines in the file
-        long lines = Files.lines(Path.of(path)).count();
-        System.out.println("number of lines in password file= "+lines);
+        long lines = Files.lines(Paths.get(path)).count();  //Path.of
         //Generate random number of a line in the file
         int randomNum = ThreadLocalRandom.current().nextInt(0, (int) lines+1);
-        System.out.println("random number is= "+randomNum);
         //Get password at that random line
         String randompwd = Files.readAllLines(Paths.get(path)).get(randomNum);
-        System.out.println("password of that line is= "+randompwd);
 
 
         return randompwd;
@@ -72,13 +69,20 @@ public class Main {
         return randomFilepath;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        for(int i=0;i<5;i++) {
+            int t = ThreadLocalRandom.current().nextInt(0, (int) 10000);
+            Thread.sleep(t);
+
+            System.out.println("request number: "+i);
+            client_behavior();
+        }
+    }
+    public static void client_behavior() {
         try{
-            String password = randomPWD();
+            String password =randomPWD();
             SecretKey keyGenerated = CryptoUtils.getKeyFromPassword(password);
             File inputFile = new File(randomFilePath());
-            System.out.println(password);
-            System.out.println(randomFilePath());
             File encryptedFile = new File("test_file-encrypted-client.pdf");
             File decryptedClient = new File("test_file-decrypted-client.pdf");
 
@@ -129,9 +133,6 @@ public class Main {
             writer.write("\n");
             writer.write(Files.size(Path.of(inputFile.getPath())) + "," + pwdLength + "," + exe_time);
 
-
-
-            //System.out.println((inputFile.getName()+','+ Files.size(Path.of(inputFile.getPath()))+','+exe_time));
 
 
             out.close();
