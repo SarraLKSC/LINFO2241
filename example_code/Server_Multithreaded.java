@@ -73,7 +73,7 @@ public class Server_Multithreaded {
      * @param k length of targeted strings
      */
     static void getKLength(int k) throws IOException {
-        File file =new File("D:/SINF2M/LINFO-2241/Project_Part1/10k-most-common_filered.txt");
+        File file =new File("C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/10k-most-common_filered.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
