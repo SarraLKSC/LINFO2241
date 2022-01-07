@@ -70,15 +70,17 @@ public class Main {
         paths[3]="C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/Files-50MB";
         paths[4]="C:/Users/celia/OneDrive/Bureau/Projet-LINFO2241-master/Projet-LINFO2241-master/Files/Files-100KB";
        **/
-        paths[0]="D:/SINF2M/LINFO-2241/Project_Part1/Files-5MB/PineTools.com_files";
+        paths[0]="D:/SINF2M/LINFO-2241/Project_Part1/Files-5MB/PineTools.com_files";//5MG
         paths[1]="D:/SINF2M/LINFO-2241/Project_Part1/Files-20KB/PineTools.com_files";
         paths[2]="D:/SINF2M/LINFO-2241/Project_Part1/Files-50KB/PineTools.com_files";
-        paths[3]="D:/SINF2M/LINFO-2241/Project_Part1/Files-50MB/PineTools.com_files";
-        paths[4]="D:/SINF2M/LINFO-2241/Project_Part1/Files-100KB/PineTools.com_files";
+        paths[4]="D:/SINF2M/LINFO-2241/Project_Part1/Files-50MB/PineTools.com_files";//50MB !!::
+        paths[3]="D:/SINF2M/LINFO-2241/Project_Part1/Files-100KB/PineTools.com_files";
         int[] lengths= new int[5];
         lengths[0]=5; lengths[1]=5; lengths[2]=5; lengths[3]=2; lengths[4]=5;
-        int randomDir = ThreadLocalRandom.current().nextInt(0, (int) 4);
-        int randomFile= ThreadLocalRandom.current().nextInt(1, (int) lengths[randomDir]+1);
+       // int randomDir = ThreadLocalRandom.current().nextInt(0, (int) 4);
+        int randomDir= (int) (0 + Math.random()*(5 - 0));
+        //int randomFile= ThreadLocalRandom.current().nextInt(1, (int) lengths[randomDir]+1);
+        int randomFile= (int) (1 + Math.random()*(lengths[randomDir]));
         String randomFilepath=paths[randomDir]+ "/file-" +randomFile+ ".bin";
         return randomFilepath;
     }

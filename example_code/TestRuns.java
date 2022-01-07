@@ -4,7 +4,7 @@ public class TestRuns {
 
 
     public static void main(String[] args) throws InterruptedException {
-        int n=5; // n is number of clients
+        int n=10; // n is number of clients
         for (int i=0;i<n;i++) {
             /** Setting a random interval time before client arrival **/
             int t = ThreadLocalRandom.current().nextInt(0, (int) 10000);

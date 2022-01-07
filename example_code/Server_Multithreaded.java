@@ -159,7 +159,7 @@ public class Server_Multithreaded {
         outSocket.writeLong(decryptedFile.length());
         outSocket.flush();
         FileManagement.sendFile(inDecrypted, outSocket);
-
+        System.out.println("returned file for password :"+password);
         dataInputStream.close();
         inputStream.close();
         inDecrypted.close();

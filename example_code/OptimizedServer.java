@@ -75,7 +75,7 @@ public class OptimizedServer {
      */
     static void getKLength(int k) throws IOException {
         File file =new File("D:/SINF2M/LINFO-2241/Project_Part1/10k-most-common_filered.txt");
-        System.out.println("wesh zin !");
+       // System.out.println("wesh zin !");
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         for (String line = br.readLine(); line != null; line = br.readLine()) {
@@ -104,9 +104,10 @@ public class OptimizedServer {
                 String hash=Arrays.toString(hashSHA1(allStrings[i]));
                 lookUp.put(hash,allStrings[i]); // add hash,pass entry to the lookup structure
                 if( real_pass.equals(hash)){
-                    System.out.println("aya bien"); result= allStrings[i];  }
+                  //  System.out.println("aya bien"); result= allStrings[i];
+                    }
             }
-            System.out.println("last part");
+           // System.out.println("last part");
             seenBefore.put(pwdlength,lookUp); //add new length hashmap to the DP structure
             return result;
         }
